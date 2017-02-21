@@ -1,5 +1,5 @@
 package Negocio;
-
+//Álvaro
 import Modelo.Cliente;
 import Modelo.Lavadora;
 import Modelo.Mayorista;
@@ -116,6 +116,7 @@ public class MenuPrincipal {
             System.out.println("3. Televisor");
             opcion = sc.nextInt();
             if (opcion == 1) {
+                
                 producto = pedirMueble();
             }
             if (opcion == 2) {
@@ -187,10 +188,10 @@ public class MenuPrincipal {
 
         do {
             System.out.println("Introduzca el tipo de Televisor");
-            System.out.println("1.Plasma");
-            System.out.println("2.LCD");
-            System.out.println("3.LED");
-            System.out.println("4.OLED");
+         Televisor.TipoTelevisor[] valor = Televisor.TipoTelevisor.values();
+            for (int i = 0; i < valor.length; i++) {
+                System.out.println(i+1 + ".-" + valor[i]);
+            }
 
             opcion = sc.nextLine();
 
@@ -215,18 +216,19 @@ public class MenuPrincipal {
         Mueble.Madera m = null;
         String opcion;
         Scanner sc = new Scanner(System.in);
-
+        
         do {
             System.out.println("Introduzca el tipo de Madera");
-            System.out.println("1.Pino");
-            System.out.println("2.Roble");
-            System.out.println("3.Haya");
+            Mueble.Madera[] valor = Mueble.Madera.values();
+            for (int i = 0; i < valor.length; i++) {
+                System.out.println(i+1 + ".-" + valor[i]);
+            }
 
             opcion = sc.nextLine();
-
+ 
         } while (!opcion.equals("1") && !opcion.equals("2") && !opcion.equals("3"));
 
-        if (opcion.equals("1")) {
+         if (opcion.equals("1")) {
             m = Mueble.Madera.PINO;
         }
         if (opcion.equals("2")) {
@@ -413,8 +415,10 @@ public class MenuPrincipal {
 
         do {
             System.out.println("Introduzca el tipo de Mayorista");
-            System.out.println("1.Gran superficie");
-            System.out.println("2.Tienda");
+           TipoMayorista[] valor = TipoMayorista.values();
+            for (int i = 0; i < valor.length; i++) {
+                System.out.println(i+1 + ".-" + valor[i]);
+            }
 
             opcion = sc.nextLine();
 

@@ -7,9 +7,9 @@ import java.util.List;
 
 
 public abstract  class Producto {
-    protected int id;
-    protected String nombre;
-    protected double precio;
+    public int id;
+    public String nombre;
+    public double precio;
     protected List<Venta> ventas;
     protected static int contador=1; 
     
@@ -52,7 +52,9 @@ public abstract  class Producto {
     
     
     public  String imprimirProducto(){
-        String res = "El id es: "+this.id+" el precio: "+this.precio+" del objeto: "+this.nombre;
+        String patron = "El id es: %d"+" el precio: %f del objeto: %s";
+        String res= String.format(patron, this);
+        
         return res;
     }
     
