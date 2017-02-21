@@ -84,7 +84,7 @@ public class NegociosService {
     }
 
 
-    public String buscarProducto(int np) throws Exception {
+    public Producto buscarProducto(int np) throws Exception {
         Producto producto = null;
         boolean respuesta=false;
         for (int i = 0; i < productos.size() && !respuesta; i++) {
@@ -97,14 +97,14 @@ public class NegociosService {
         if (producto == null) {
             throw new Exception("El producto no existe.");
         }
-        return producto.imprimirProducto();
+        return producto;
     }
 
     public Cliente buscarCliente(int numeroCliente) {
         Cliente cliente = null;
         boolean respuesta=false;
         for (Cliente c : clientes) {
-            if (c.getIdCliente() == numeroCliente) {
+            if (c.getIdCliente() == numeroCliente && !respuesta) {
                 cliente = c;
                 respuesta=true;
             }
@@ -113,13 +113,15 @@ public class NegociosService {
         return cliente;
     }
 
-    public void buscarVenta(int nv) {
+    public Venta buscarVenta(int nv) {
+       boolean respuesta=false;
+        Venta venta = null;
         try {
-
-            Venta venta = null;
-            for (int i = 0; i < ventas.size(); i++) {
+           
+            for (int i = 0; i < ventas.size()&& !respuesta; i++) {
                 if (ventas.get(i).getIdVenta() == nv) {
                     venta = ventas.get(i);
+                    respuesta=true;
                 }
             }
             if (venta == null) {
@@ -128,7 +130,7 @@ public class NegociosService {
             venta.imprimirVenta();
         } catch (Exception e) {
             throw new RuntimeException("No ha sido posible imprimir la venta" + e.getMessage());
-        }
+        } return venta;
     }
 
     public void elimninarProducto(int nproducto) {

@@ -8,6 +8,7 @@ import Modelo.Particular;
 import Modelo.Producto;
 import Modelo.Televisor;
 import Modelo.TipoMayorista;
+import Modelo.Venta;
 import Modelo.dniErroneo;
 import Modelo.fechaErronea;
 import java.text.ParseException;
@@ -58,6 +59,7 @@ public class MenuPrincipal {
     }
 
     private void menuProductos() {
+        Producto producto;
         try {
             int opcionProductos = -1;
             do {
@@ -81,7 +83,8 @@ public class MenuPrincipal {
                 if (opcionProductos == 3) {
                     System.out.println("Introduzca el número de producto: ");
                     int nprod = sc.nextInt();
-                    System.out.println(servicio.buscarProducto(nprod));
+                    producto=servicio.buscarProducto(nprod);
+                    System.out.println(producto.imprimirProducto());
                 }
                 if (opcionProductos == 4) {
                     System.out.println(servicio.imprimirTodosProductos());
@@ -145,7 +148,7 @@ public class MenuPrincipal {
                fecha = sc.nextLine();
                m.setAnyoFab(this.validarFecha(fecha));
             } catch (fechaErronea f) {
-                throw new fechaErronea(", la fecha "+fecha+" no es una fecha correcta");
+               System.out.println(f.getMessage());
             }
         return m;
 
@@ -428,7 +431,7 @@ public class MenuPrincipal {
 
     private void menuVentas() {
         Scanner sc = new Scanner(System.in);
-
+        Venta venta= new Venta();
         try {
             String opcionVentas = "-1";
             do {
@@ -456,7 +459,8 @@ public class MenuPrincipal {
                 if (opcionVentas.equals("3")) {
                     System.out.println("Introduzca número de venta: ");
                     int nv = Integer.parseInt(sc.nextLine());
-                    servicio.buscarVenta(nv);
+                    venta=servicio.buscarVenta(nv);
+                    System.out.println(venta.imprimirVenta());
                 }
                 if (opcionVentas.equals("4")) {
                     System.out.println(servicio.imprimirtodasVentas());
